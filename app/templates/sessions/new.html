@@ -1,0 +1,20 @@
+<h1>Hi</h1>
+<div id="signInModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        Sign in please
+      </div>
+      <div class="modal-body">
+        <form ng-submit="nagsCtrl.createNewSession()">
+          Phone Number:
+          <input id="phoneNumber" ng-model="nagsCtrl.phoneNumber"></input>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button ng-click="nagsCtrl.createNewSession()" class="btn btn-primary">Log in</button>
+      </div>
+    </div>
+
+  </div>
+</div>
