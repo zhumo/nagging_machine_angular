@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="./app.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/nags_controller.js"></script>
+    <script src="services/nags_manager.js"></script>
+    <script src="services/sessions_manager.js"></script>
     <style>
       .nag-row .done{
         text-decoration: line-through;
@@ -29,7 +32,6 @@
             </thead>
             <tbody>
               <tr class="nag-row" ng-repeat="nag in nags">
-              <h1>{{nag}}</h1>
                 <td><input ng-click="nagsCtrl.toggleDone(nag.id)" type="checkbox" ng-checked="nag.status == 'done'"></input></td>
                 <td ng-class="nag.status">{{nag.contents}}</td>
               </tr>
@@ -59,7 +61,6 @@
               <form ng-submit="nagsCtrl.createNewSession()">
                 Phone Number:
                 <input id="phoneNumber" ng-model="nagsCtrl.phoneNumber"></input>
-                {{nagsCtrl.phoneNumber}}
               </form>
             </div>
             <div class="modal-footer">
