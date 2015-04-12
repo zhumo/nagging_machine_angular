@@ -1,0 +1,39 @@
+{
+  "nags": [
+    {
+      "id": 1,
+      "contents": "Trash",
+      "status": "active",
+      "ping_count": 0,
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "contents": "Gym",
+      "status": "active",
+      "ping_count": 1,
+      "user_id": 1
+    },
+    {
+      "id": 3,
+      "contents": "Mom's Birthday",
+      "status": "active",
+      "ping_count": 9,
+      "user_id": 1
+    },
+    {
+      "id": 4,
+      "contents": "Clean Bathroom",
+      "status": "done",
+      "ping_count": 0,
+      "user_id": 1
+    },
+    {
+      "id": 5,
+      "contents": "Call girlfriend",
+      "status": "active",
+      "ping_count": 3,
+      "user_id": 1
+    }
+  ]
+}

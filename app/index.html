@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-mocks.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="./app.js"></script>
+    <style>
+      .nag-row .done{
+        text-decoration: line-through;
+      }
+      .newNagSection #newNagContentsInput:not(:focus) ~ .error-message {
+        display: none;
+      }
+    </style>
+  </head>
+  <body ng-app="naggingMachine" class="ng-cloak">
+    <div  ng-controller="NagsController as nagsCtrl">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="nag-row" ng-repeat="nag in nags">
+              <h1>{{nag}}</h1>
+                <td><input ng-click="nagsCtrl.toggleDone(nag.id)" type="checkbox" ng-checked="nag.status == 'done'"></input></td>
+                <td ng-class="nag.status">{{nag.contents}}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <form name="newNagForm" ng-submit="nagsCtrl.newNag.contents != undefined && nagsCtrl.addNag()">
+                    <div class="newNagSection">
+                      <input id="newNagContentsInput" type="text" name="newNagContents" ng-model="nagsCtrl.newNag.contents"></input>
+                      <div class="error-message" ng-show="nagsCtrl.newNag.contents == undefined">Can't be blank!</div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div id="signInModal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              Sign in please
+            </div>
+            <div class="modal-body">
+              <form ng-submit="nagsCtrl.createNewSession()">
+                Phone Number:
+                <input id="phoneNumber" ng-model="nagsCtrl.phoneNumber"></input>
+                {{nagsCtrl.phoneNumber}}
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button ng-click="nagsCtrl.createNewSession()" class="btn btn-primary">Log in</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <script>
+        $(document).ready(function(){
+          $("#signInModal").modal("show");
+        });
+      </script>
+    </div>
+  </body>
+</html>
