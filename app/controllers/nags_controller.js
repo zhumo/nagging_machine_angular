@@ -4,16 +4,21 @@ naggingMachine
     var ctrl = this;
     ctrl.nags = [];
 
-    ctrl.toggleDone = function(doneNagId){
+    ctrl.declareDone = function(doneNagId){
       var toggledNag = ctrl.nags.filter(function(nag){
         return nag.id == doneNagId;
       })[0];
 
-      if(toggledNag.status == "done"){
-        toggledNag.status = "active";
-      }else{
-        toggledNag.status = "done";
-      }
+      NagsManager.declareNagDone(toggledNag.id)
+        .then(
+          function(){
+            toggledNag.status = "done";
+          }, 
+          function(){
+            alert("Oops! Something went wrong! We were not able to change that nag's status");
+            $("#nag-checkbox-" + toggledNag.id).attr("checked", false);
+          }
+        );
     }
 
     NagsManager.getNags(SessionsManager.getAuthToken()).then(function(response){

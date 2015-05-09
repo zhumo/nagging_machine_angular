@@ -9,9 +9,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="nag-row" ng-repeat="nag in nagsCtrl.nags">
-            <td><input ng-click="nagsCtrl.toggleDone(nag.id)" type="checkbox" ng-checked="nag.status == 'done'"></input></td>
-            <td ng-class="nag.status">{{nag.contents}}</td>
+          <tr class="nag-row" ng-attr-id="{{'nag-row-' + nag.id}}" ng-repeat="nag in nagsCtrl.nags" ng-if="nag.status == 'active'">
+            <td><input type="checkbox" class="nag-checkbox" ng-attr-id="{{'nag-checkbox-' + nag.id}}" ng-click="nagsCtrl.declareDone(nag.id)"></input></td>
+            <td class="nag-contents" ng-attr-id="{{'nag-contents-' + nag.id}}">{{nag.contents}}</td>
           </tr>
           <tr>
             <td></td>
