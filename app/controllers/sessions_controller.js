@@ -1,14 +1,19 @@
 naggingMachine
-  .controller("SessionsController", ["SessionsManager", function(SessionsManager){
+  .controller("SessionsController", ["SessionsManager", "$location", function(SessionsManager, $location){
     var ctrl = this;
 
     ctrl.phoneNumber = undefined;
-    ctrl.password = undefined;
+    ctrl.password    = undefined;
 
     ctrl.createNewSession = function(){
-      SessionsManager.createNewSession(ctrl.phoneNumber, ctrl.password);
-      ctrl.phoneNumber = undefined;
-      ctrl.password = undefined;
+      if(SessionsManager.createNewSession(ctrl.phoneNumber, ctrl.password)){
+        ctrl.phoneNumber = undefined;
+        ctrl.password    = undefined;
+      }
     };
+
+    ctrl.destroyCurrentSession = function(){
+      SessionsManager.destroySession();
+    }
 
   }]);

@@ -9,22 +9,30 @@ naggingMachine
 
           $location.path("/mynags");
           $location.replace();
+          return true;
         }, function(err){
           var authToken = undefined;
           alert(err.status + ": " + err.statusText);
+          return false
         }
       );
     };
+
+    this.destroySession = function(){
+      $cookies.authToken = undefined;
+      $location.path("/");
+      $location.replace();
+    }
 
     this.getAuthToken = function(){
       return $cookies.authToken;
     };
 
     this.loggedIn = function(){
-      if(typeof($cookies.authToken) === "string"){
-        return true
-      }else{
+      if($cookies.authToken == "undefined"){
         return false
+      }else{
+        return true
       }
     };
   }]);
