@@ -1,11 +1,11 @@
 naggingMachine
-  .controller("NagsController", ['$scope', "$http", 'SessionsManager', 'NagsManager', '$timeout', function($scope, $http, SessionsManager, NagsManager, $timeout){
+  .controller("NagsController", ["$http", 'SessionsManager', 'NagsManager', '$timeout', function($http, SessionsManager, NagsManager, $timeout){
 
-    $scope.phoneNumber = undefined;
-    $scope.nags = [];
+    var ctrl = this;
+    ctrl.nags = [];
 
-    this.toggleDone = function(doneNagId){
-      var toggledNag = $scope.nags.filter(function(nag){
+    ctrl.toggleDone = function(doneNagId){
+      var toggledNag = ctrl.nags.filter(function(nag){
         return nag.id == doneNagId;
       })[0];
 
@@ -16,26 +16,22 @@ naggingMachine
       }
     }
 
-    this.createNewSession = function(){
-      SessionsManager.createNewSession(this.phoneNumber);
-      setTimeout(function(){
-        NagsManager.getNags(SessionsManager.getUserId()).then(function(response){
-          $scope.nags = response.data;
-          $("#signInModal").modal("hide");  
-        });
-      }, 1500);
-    }
+    NagsManager.getNags(SessionsManager.getAuthToken()).then(function(response){
+      for(nagIndex in response.data){
+        ctrl.nags.push(response.data[nagIndex]);
+      }
+    });
     
-    this.addNag = function(){
+    ctrl.addNag = function(){
       var newNag = {
-        id: $scope.nags.length,
-        user_id: SessionsManager.getUserId(),
-        contents: this.newNag.contents,
+        id: ctrl.nags.length,
+        auth_token: SessionsManager.getAuthToken(),
+        contents: ctrl.newNag.contents,
         status: "active",
         ping_count: 0
       }
-      $scope.nags.push(newNag);
-      $scope.newNag = undefined;
+      ctrl.nags.push(newNag);
+      ctrl.newNag = undefined;
 
       $http.post("http://localhost:3000/api/nags", newNag)
     }

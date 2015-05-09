@@ -1,0 +1,31 @@
+<div ng-controller="NagsController as nagsCtrl">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="nag-row" ng-repeat="nag in nagsCtrl.nags">
+            <td><input ng-click="nagsCtrl.toggleDone(nag.id)" type="checkbox" ng-checked="nag.status == 'done'"></input></td>
+            <td ng-class="nag.status">{{nag.contents}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <form name="newNagForm" ng-submit="nagsCtrl.newNag.contents != undefined && nagsCtrl.addNag()">
+                <div class="newNagSection">
+                  <input id="newNagContentsInput" type="text" name="newNagContents" ng-model="nagsCtrl.newNag.contents"></input>
+                  <div class="error-message" ng-show="nagsCtrl.newNag.contents == undefined">Can't be blank!</div>
+                </div>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
