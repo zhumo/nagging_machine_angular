@@ -1,0 +1,10 @@
+<div ng-controller="SessionsController as seshCtrl">
+  <h1>Sign in please</h1>
+  <form ng-submit="seshCtrl.createNewSession()">
+    Phone Number:
+    <input type="text" id="phoneNumber" ng-model="seshCtrl.phoneNumber"></input>
+    Password:
+    <input type="password" id="password" ng-model="seshCtrl.password"></input>
+    <button class="btn btn-primary">Log in</button>
+  </form>
+</div>
