@@ -1,26 +1,27 @@
 naggingMachine
-  .service("SessionsManager", ["$http", "$location", function($http, $location){
-    var authToken;
+  .service("SessionsManager", ["$http", "$location", "$cookies", function($http, $location, $cookies){
 
     this.createNewSession = function(phoneNumber, password){
       $http.post("http://localhost:3000/api/sessions", {phone_number: phoneNumber, password: password})
         .then(function(response){
-          authToken = response.data.auth_token;
+          var authToken = response.data.auth_token;
+          $cookies.authToken = authToken;
+
           $location.path("/mynags");
           $location.replace();
         }, function(err){
-          authToken = undefined;
+          var authToken = undefined;
           alert(err.status + ": " + err.statusText);
         }
       );
     };
 
     this.getAuthToken = function(){
-      return authToken;
+      return $cookies.authToken;
     };
 
     this.loggedIn = function(){
-      if(typeof(authToken) === "string"){
+      if(typeof($cookies.authToken) === "string"){
         return true
       }else{
         return false
