@@ -31,4 +31,8 @@ naggingMachine
     ctrl.userActive = function(){
       return ctrl.userStatus() == "active";
     }
+
+    ctrl.userStopped = function(){
+      return ctrl.userStatus() == "stopped";
+    }
   }]);
