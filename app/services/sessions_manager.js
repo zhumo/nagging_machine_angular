@@ -6,6 +6,8 @@ naggingMachine
         .then(function(response){
           var authToken = response.data.auth_token;
           $cookies.authToken = authToken;
+          $cookies.firstName = response.data.first_name;
+          $cookies.status    = response.data.user_status;
 
           $location.path("/mynags");
           $location.replace();
@@ -13,13 +15,15 @@ naggingMachine
         }, function(err){
           var authToken = undefined;
           alert(err.status + ": " + err.statusText);
-          return false
+          return false;
         }
       );
     };
 
     this.destroySession = function(){
       delete $cookies.authToken;
+      delete $cookies.firstName;
+      delete $cookies.status;
       $location.path("/");
       $location.replace();
     }
@@ -28,11 +32,19 @@ naggingMachine
       return $cookies.authToken;
     };
 
+    this.getUserFirstName = function(){
+      return $cookies.firstName;
+    };
+
+    this.getUserStatus = function(){
+      return $cookies.status;
+    };
+
     this.loggedIn = function(){
       if($cookies.authToken == undefined){
-        return false
+        return false;
       }else{
-        return true
+        return true;
       }
     };
   }]);

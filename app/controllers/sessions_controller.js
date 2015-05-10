@@ -19,4 +19,16 @@ naggingMachine
     ctrl.loggedIn = function(){
       return SessionsManager.loggedIn();
     }
+
+    ctrl.userFirstName = function(){
+      return SessionsManager.getUserFirstName();
+    }
+
+    ctrl.userStatus = function(){
+      return SessionsManager.getUserStatus();
+    }
+
+    ctrl.userActive = function(){
+      return ctrl.userStatus() == "active";
+    }
   }]);

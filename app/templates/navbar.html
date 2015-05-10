@@ -12,8 +12,18 @@
       </div>
       <div class="collapse navbar-collapse" id="navbar-content">
         <ul class="nav navbar-nav navbar-right">
-          <li><p class="navbar-text">Hi!</p></li>
-          <li><a href="#" ng-click="seshCtrl.destroyCurrentSession()">Sign Out</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+              Hi, {{seshCtrl.userFirstName()}}!
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Edit Account</a></li>
+              <li ng-if="seshCtrl.userActive()"><a href="#">Stop Nags</a></li>
+              <li ng-if="!seshCtrl.userActive()"><a href="#">Restart Nags</a></li>
+              <li><a href="#" ng-click="seshCtrl.destroyCurrentSession()">Sign Out</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
