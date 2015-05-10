@@ -1,2 +1,2 @@
-angular.module("naggingMachine", ["ngRoute"]);
+angular.module("naggingMachine", ["ngRoute", "ngCookies"]);
 var naggingMachine = angular.module("naggingMachine");

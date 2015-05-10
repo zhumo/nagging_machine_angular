@@ -1,0 +1,51 @@
+<div id="navbar" ng-controller="SessionsController as seshCtrl" ng-hide="!seshCtrl.loggedIn()">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-content">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">The Nagging Machine</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-content">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+              Hi, {{seshCtrl.userFirstName()}}!
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="#">
+                  <i class="glyphicon glyphicon-user"></i> 
+                  Edit Account
+                </a>
+              </li>
+              <li class="bg-danger" ng-if="seshCtrl.userActive()" ng-controller="UsersController as userCtrl">
+                <a href="#" ng-click="userCtrl.stopNags();">
+                  <i class="glyphicon glyphicon-remove"></i> 
+                  Stop Nags
+                </a>
+              </li>
+              <li class="bg-success" ng-if="seshCtrl.userStopped()" ng-controller="UsersController as userCtrl">
+                <a href="#" ng-click="userCtrl.restartNags();">
+                  <i class="glyphicon glyphicon-refresh"></i> 
+                  Restart Nags
+                </a>
+              </li>
+              <li>
+                <a href="#" ng-click="seshCtrl.destroyCurrentSession()">
+                  <i class="glyphicon glyphicon-log-out"></i> 
+                  Sign Out
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
