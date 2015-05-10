@@ -18,10 +18,18 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Edit Account</a></li>
-              <li ng-if="seshCtrl.userActive()"><a href="#">Stop Nags</a></li>
-              <li ng-if="!seshCtrl.userActive()"><a href="#">Restart Nags</a></li>
-              <li><a href="#" ng-click="seshCtrl.destroyCurrentSession()">Sign Out</a></li>
+              <li><a href="#">
+                <i class="glyphicon glyphicon-user"></i> Edit Account
+              </a></li>
+              <li class="bg-danger" ng-if="seshCtrl.userActive()"><a href="#">
+                <i class="glyphicon glyphicon-remove"></i> Stop Nags
+              </a></li>
+              <li class="bg-success" ng-if="!seshCtrl.userActive()"><a href="#">
+                <i class="glyphicon glyphicon-refresh"></i> Restart Nags
+              </a></li>
+              <li><a href="#" ng-click="seshCtrl.destroyCurrentSession()">
+                <i class="glyphicon glyphicon-log-out"></i> Sign Out
+              </a></li>
             </ul>
           </li>
         </ul>
