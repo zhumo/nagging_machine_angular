@@ -19,7 +19,7 @@ naggingMachine
     };
 
     this.destroySession = function(){
-      $cookies.authToken = undefined;
+      delete $cookies.authToken;
       $location.path("/");
       $location.replace();
     }
@@ -29,7 +29,7 @@ naggingMachine
     };
 
     this.loggedIn = function(){
-      if($cookies.authToken == "undefined"){
+      if($cookies.authToken == undefined){
         return false
       }else{
         return true

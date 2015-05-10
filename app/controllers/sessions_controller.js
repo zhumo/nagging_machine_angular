@@ -16,4 +16,7 @@ naggingMachine
       SessionsManager.destroySession();
     }
 
+    ctrl.loggedIn = function(){
+      return SessionsManager.loggedIn();
+    }
   }]);
